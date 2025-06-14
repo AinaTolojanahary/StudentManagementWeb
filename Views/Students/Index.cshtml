@@ -1,0 +1,38 @@
+@model IEnumerable<StudentManagementWeb.Models.Student>
+
+@{
+    ViewData["Title"] = "Liste des étudiants";
+}
+
+<h1>Liste des étudiants</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Ajouter un étudiant</a>
+</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.FirstName</td>
+                <td>@student.LastName</td>
+                <td>@student.Email</td>
+                <td>@(student.BirthDate?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@student.Id" class="btn btn-warning">Modifier</a>
+                    <a asp-action="Delete" asp-route-id="@student.Id" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

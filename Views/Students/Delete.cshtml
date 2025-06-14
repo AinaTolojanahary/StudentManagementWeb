@@ -1,0 +1,29 @@
+@model StudentManagementWeb.Models.Student
+
+@{
+    ViewData["Title"] = "Supprimer un étudiant";
+}
+
+<h1>Supprimer un étudiant</h1>
+
+<h3>Êtes-vous sûr de vouloir supprimer cet étudiant ?</h3>
+<div>
+    <h4>Étudiant</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Prénom</dt>
+        <dd class="col-sm-10">@Model.FirstName</dd>
+        <dt class="col-sm-2">Nom</dt>
+        <dd class="col-sm-10">@Model.LastName</dd>
+        <dt class="col-sm-2">Email</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+        <dt class="col-sm-2">Date de naissance</dt>
+        <dd class="col-sm-10">@(Model.BirthDate?.ToString("yyyy-MM-dd") ?? "N/A")</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Retour</a>
+    </form>
+</div>
